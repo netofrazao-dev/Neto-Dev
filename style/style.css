@@ -683,6 +683,173 @@ textarea {
     color: var(--text-muted);
 }
 
+/* PROJETOS */
+.projetos {
+    background: rgba(5, 5, 9, 0.96);
+}
+
+.projetos-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.4rem;
+}
+
+.projeto-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(circle at top, rgba(79, 70, 229, 0.15), rgba(15, 23, 42, 0.97));
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    padding: 1.2rem 1.2rem 1.3rem;
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition),
+        background var(--transition);
+}
+
+/* halo suave como nos cards de serviços */
+.projeto-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(
+        from 190deg,
+        rgba(79, 70, 229, 0.4),
+        transparent,
+        rgba(34, 197, 94, 0.25),
+        transparent
+    );
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.projeto-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: rgba(79, 70, 229, 0.9);
+    box-shadow: 0 26px 70px rgba(15, 23, 42, 0.98);
+}
+
+.projeto-card:hover::before {
+    opacity: 0.3;
+    transform: rotate(16deg);
+}
+
+/* Imagem do projeto */
+.projeto-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: calc(var(--radius-lg) - 6px);
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.4), rgba(15, 23, 42, 0.98));
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.projeto-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition);
+}
+
+.projeto-card:hover .projeto-image {
+    transform: scale(1.05);
+}
+
+/* Conteúdo */
+.projeto-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.projeto-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.projeto-category {
+    padding: 0.16rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.68rem;
+    color: #e5e7ff;
+}
+
+.projeto-tipo {
+    font-size: 0.76rem;
+    color: rgba(148, 163, 184, 0.9);
+}
+
+.projeto-title {
+    margin: 0 0 0.3rem;
+    font-size: 1.02rem;
+}
+
+.projeto-description {
+    margin: 0 0 0.9rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Tecnologias */
+.projeto-tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 0.76rem;
+}
+
+.projeto-tech-list li {
+    padding: 0.18rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(148, 163, 184, 0.45);
+}
+
+/* Ações */
+.projeto-actions {
+    margin-top: 1.1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.projeto-actions .btn {
+    flex: 1 1 140px;
+    font-size: 0.9rem;
+}
+
+/* Responsividade para a grid de projetos */
+@media (min-width: 640px) {
+    .projetos-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 900px) {
+    .projetos-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 /* DIFERENCIAIS */
 .diferenci {
     background: linear-gradient(to bottom, rgba(10, 10, 20, 0.95), rgba(5, 5, 9, 0.95));

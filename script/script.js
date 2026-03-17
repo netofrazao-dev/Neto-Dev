@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = '5591992957604'; 
+const WHATSAPP_NUMBER = '5591992625811'; 
 
 // Utilitário de seleção
 const $ = (selector, scope = document) => scope.querySelector(selector);
@@ -327,5 +327,44 @@ ${msg}`;
         window.open(url, '_blank');
 
         form.reset();
+    });
+});
+
+/* Botões "Quero um Igual" nos projetos -> pré-preenche mensagem do formulário */
+document.addEventListener('DOMContentLoaded', () => {
+    const projectButtons = $$('.btn-projeto-igual');
+    const messageField = $('#mensagem');
+    const nameField = $('#nome');
+    const formSection = $('#contato');
+
+    if (!projectButtons.length || !messageField || !formSection) return;
+
+    projectButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const project = button.getAttribute('data-project') || 'seu projeto';
+            const category = button.getAttribute('data-category') || '';
+            const categoryText = category ? ` (${category})` : '';
+
+            const template =
+`Olá, quero um site igual ao projeto: ${project}${categoryText}.
+
+Meu negócio é: `;
+
+            messageField.value = template;
+
+            if (nameField && !nameField.value) {
+                nameField.focus();
+            } else {
+                messageField.focus();
+            }
+
+            const headerHeight = $('.header')?.offsetHeight || 0;
+            const top = formSection.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+
+            window.scrollTo({
+                top,
+                behavior: 'smooth'
+            });
+        });
     });
 });
